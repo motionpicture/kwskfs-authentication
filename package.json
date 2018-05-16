@@ -11,6 +11,8 @@
   },
   "private": true,
   "dependencies": {
+    "@motionpicture/kwskfs-api-javascript-client": "0.0.0-alpha.7",
+    "@motionpicture/kwskfs-api-nodejs-client": "0.0.0-alpha.10",
     "basic-auth": "^2.0.0",
     "body-parser": "^1.18.2",
     "connect-redis": "^3.3.3",

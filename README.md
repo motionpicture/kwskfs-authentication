@@ -8,8 +8,10 @@
 ```shell
 set NODE_ENV=**********環境名**********
 set NPM_TOKEN=**********npm motionpicture トークン**********
-set GIFT_LENGTH=**********当選数**********
-set WHITELIST=*********クロスドメイン許可URL***********
+set API_ENDPOINT=**********mp apiのエンドポイント**********
+set CLIENT_ID=**********クライアントID**********
+set CLIENT_SECRET=**********クライアント鍵**********
+set AUTHORIZE_SERVER_DOMAIN=**********認証サーバードメイン**********
 ```
 
 only on Aure WebApps

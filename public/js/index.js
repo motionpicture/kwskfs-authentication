@@ -16,22 +16,53 @@ function qrReaderInput(event) {
     $('.success,.failure').hide();
     if (event.key === KEY_ENTER && qrReaderInputValue.length > 0) {
         console.log(qrReaderInputValue);
-        if (qrReaderInputValue === '1234') {
-            success();
-        } else {
-            failure();
-        }
-        qrReaderInputValue = '';
+        var ticketToken = qrReaderInputValue;
+        checkIn(ticketToken, function() {
+            qrReaderInputValue = '';
+        });
     } else if (event.key !== KEY_ESCAPE) {
         qrReaderInputValue += event.key;
     }
+}
+
+/**
+ * QR認証
+ * @param {string} ticketToken
+ * @param {Function} cb
+ */
+function checkIn(ticketToken, cb) {
+    var options = {
+        url: '/api/authorize/checkIn',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            ticketToken: ticketToken
+        },
+        timeout: 30 * 1000
+    };
+    var done = function (data, textStatus, jqXHR) {
+        console.log(data, textStatus, jqXHR);
+        success(data);
+    };
+    var fail = function (jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR, textStatus, errorThrown);
+        failure();
+    };
+    var always = function () {
+        cb();
+    };
+    $.ajax(options)
+        .done(done)
+        .fail(fail)
+        .always(always);
 }
 
 
 /**
  * 成功
  */
-function success() {
+function success(data) {
+    $('.success-count').text(data.length);
     $('.success').show();
 }
 

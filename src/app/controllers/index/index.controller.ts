@@ -6,7 +6,7 @@ import * as debug from 'debug';
 import { Response, Request, NextFunction } from 'express';
 
 const log = debug('authentication:index');
-const path = `${__dirname}/../../../../data`;
+
 /**
  * render
  */
